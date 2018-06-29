@@ -1,0 +1,8 @@
+{
+	"env":{
+		"JWT_KEY":"WebTokeyKey",
+		"user":"yourid@domain.com",
+		"pass":"yourPassword"
+		
+	}
+}

@@ -1,0 +1,412 @@
+<html>
+
+<head>
+    <title>
+        Become a partner
+    </title>
+    <link rel="shortcut icon" href="D:/Museum Aggregators/Museum/images.png">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"> </script>
+    <script src="D:/Museum Aggregators/bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"> </script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
+    <script src="ng-file-upload.min.js"></script>
+
+
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/form-elements.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- CSS End -->
+</head>
+
+<body ng-app="myModule" ng-controller="loginController" data-ng-init="checkValidation()">
+
+    <div class="top-content">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 text">
+                    <h1>
+                        <strong>Registrer Your Museum</strong>
+                    </h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1 col-md-12  col-lg-10 col-lg-offset-1 form-box">
+                    <form method="POST" class="f1" action="">
+
+                        <h3>Museum Registration Form</h3>
+
+                        <div class="f1-steps">
+                            <div class="f1-progress">
+                                <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="3" style="width: 16.66%;"></div>
+                            </div>
+                            <div class="f1-step active">
+                                <div class="f1-step-icon">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <p>about</p>
+                            </div>
+                            <div class="f1-step">
+                                <div class="f1-step-icon">
+                                    <i class="fa fa-fort-awesome"></i>
+                                </div>
+                                <p>Museum Details</p>
+                            </div>
+                            <div class="f1-step">
+                                <div class="f1-step-icon">
+                                    <i class="fa fa-twitter"></i>
+                                </div>
+                                <p>social</p>
+                            </div>
+                        </div>
+
+                        <fieldset>
+
+                            <h4>Tell us who you are:</h4>
+                            <div class="form-group">
+                                <label class="sr-only" for="f1-first-name">Name </label>
+                                <input type="text" placeholder="First name..." class="f1-first-name form-control" ng-model="name" id="name"
+                                    required minlength="5" maxlength="40">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="f1-first-name">Email</label>
+                                <input type="email" placeholder="Email..." class="f1-email form-control" ng-model="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="f1-first-name">Contact Number</label>
+                                <input type="text" ng-pattern="/^[7-9][0-9]{9}$/"  placeholder="Contact No..." class="f1-email form-control" ng-model="cno" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="f1-first-name">Museum Name</label>
+                                <input type="text" name="f1-first-name" placeholder="Museum name..." class="f1-first-name form-control" id="mname" ng-model="mname"
+                                    required>
+                            </div>
+                            <!-- <div class="form-group">
+                                <label class="sr-only" for="f1-password">Password</label>
+                                <input type="password" name="f1-password" placeholder="Password..." class="f1-password form-control" ng-model="password"
+                                    id="password" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="f1-repeat-password">Repeat password</label>
+                                <input type="password" name="f1-repeat-password" placeholder="Repeat password..." class="f1-repeat-password form-control"
+                                    ng-model="cpassword" id="cpassword" required>
+                            </div> -->
+
+                            <div class="f1-buttons">
+                                <button type="button" class="btn btn-next" >Next</button>
+                                </divs>
+                        </fieldset>
+
+                        <fieldset>
+                            <h4>Museum Details</h4>
+                            
+                            <div class="form-group">
+                                <label class="sr-only" for="f1-first-name">Museum Website Link</label>
+                                <input type="text"  placeholder="Museum Website Link..." class="f1-first-name form-control" id="website"
+                                    ng-model="website">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="f1-first-name">Logo</label>
+                                <input 
+                                type="file" 
+                                file-model="myFile"
+                                accept="image/*"
+                                placeholder="Museum Logo(.jpg/.jpeg/.png)..."
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="f1-about-yourself">Address</label>
+                                <textarea  placeholder="Address of Museum..." class="f1-about-yourself form-control" id="address"
+                                    ng-model="address" ng-change='getLatLng()'></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="f1-email">Pincode</label>
+                                <input type="text"  placeholder="Pincode..." class="f1-first-name form-control" id="pincode" pattern="[0-9]{6}"
+                                    ng-model="pincode" ng-change='setCityName()' required >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="sr-only" for="f1-email">City</label>
+                                <input type="text"  placeholder="City..." class="f1-first-name form-control" value="temp_city" id="city" ng-model="city"
+                                    ng-change='getLatLng()' required >
+                            </div>
+
+                            <div style="height: 60%; width:100%; ">
+                                <label id="map_lable">Drop Pin To Your Location</label>
+                                <div id="map_canvas"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="" for="f1-email">
+                                    <strong>Select Time(12-hour-format)</strong>
+                                </label>
+                                <table class="table table-light f1-first-name">
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>From</td>
+                                        <td>To</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Monday</td>
+                                        <td>
+                                            <input type="radio" name="mon" value="false" ng-model="mon" ng-click="checkValidation()" >Close</td>
+                                        <td>
+                                            <input type="radio" name="mon" value="true" ng-model="mon" ng-click="checkValidation()" >Open</td>
+                                        <td>
+                                            <!-- <input  type="text" pattern="(?:[01]|2(?![4-9])){1}\d{1}:[0-5]{1}\d{1}" ng-model="mon_from" ng-disabled="isMon" required> -->
+                                            <select ng-model="mon_from" ng-disabled="isMon">                                      
+                                                <option>01:00</option> <option>02:00</option> <option>03:00</option> <option>04:00</option>
+                                                <option>05:00</option> <option>06:00</option> <option>07:00</option> <option>08:00</option>
+                                                <option>09:00</option> <option>10:00</option> <option>11:00</option> <option>12:00</option> 
+                                                <option>13:00</option> <option>14:00</option> <option>15:00</option> <option>16:00</option>
+                                                <option>17:00</option> <option>18:00</option> <option>19:00</option> <option>20:00</option>
+                                                <option>21:00</option> <option>22:00</option> <option>23:00</option> <option>24:00</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <!-- <input  type="text" pattern="(?:[01]|2(?![4-9])){1}\d{1}:[0-5]{1}\d{1}" ng-model="mon_to" ng-disabled="isMon" required> -->
+                                            <select ng-model="mon_to" ng-disabled="isMon">                                      
+                                                <option>01:00</option> <option>02:00</option> <option>03:00</option> <option>04:00</option>
+                                                <option>05:00</option> <option>06:00</option> <option>07:00</option> <option>08:00</option>
+                                                <option>09:00</option> <option>10:00</option> <option>11:00</option> <option>12:00</option> 
+                                                <option>13:00</option> <option>14:00</option> <option>15:00</option> <option>16:00</option>
+                                                <option>17:00</option> <option>18:00</option> <option>19:00</option> <option>20:00</option>
+                                                <option>21:00</option> <option>22:00</option> <option>23:00</option> <option>24:00</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tuesday</td>
+                                        <td>
+                                            <input type="radio" name="tue" value="false" ng-model="tue" ng-click="checkValidation()">Close</td>
+                                        <td>
+                                            <input type="radio" name="tue" value="true" ng-model="tue" ng-click="checkValidation()" >Open</td>
+                                        <td>
+                                            <!-- <input  type="text" pattern="([0-1]{1}[0-9]{1}|20|21|22|23):[0-5]{1}[0-9]{1}" ng-model="tue_from" ng-disabled="isTue" ng-click="checkValidation()"> -->
+                                            <select ng-model="tue_from" ng-disabled="isTue">
+                                                <option>01:00</option> <option>02:00</option> <option>03:00</option> <option>04:00</option>
+                                                <option>05:00</option> <option>06:00</option> <option>07:00</option> <option>08:00</option>
+                                                <option>09:00</option> <option>10:00</option> <option>11:00</option> <option>12:00</option> 
+                                                <option>13:00</option> <option>14:00</option> <option>15:00</option> <option>16:00</option>
+                                                <option>17:00</option> <option>18:00</option> <option>19:00</option> <option>20:00</option>
+                                                <option>21:00</option> <option>22:00</option> <option>23:00</option> <option>24:00</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select ng-model="tue_to" ng-disabled="isTue">                                      
+                                                <option>01:00</option> <option>02:00</option> <option>03:00</option> <option>04:00</option>
+                                                <option>05:00</option> <option>06:00</option> <option>07:00</option> <option>08:00</option>
+                                                <option>09:00</option> <option>10:00</option> <option>11:00</option> <option>12:00</option> 
+                                                <option>13:00</option> <option>14:00</option> <option>15:00</option> <option>16:00</option>
+                                                <option>17:00</option> <option>18:00</option> <option>19:00</option> <option>20:00</option>
+                                                <option>21:00</option> <option>22:00</option> <option>23:00</option> <option>24:00</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Wedensday</td>
+                                        <td>
+                                            <input type="radio" name="wed" value="false" ng-model="wed" ng-click="checkValidation()">Close</td>
+                                        <td>
+                                            <input type="radio" name="wed" value="true" ng-model="wed" ng-click="checkValidation()" >Open</td>
+                                        <td>
+                                            <!-- <input  type="text" pattern="([0-1]{1}[0-9]{1}|20|21|22|23):[0-5]{1}[0-9]{1}" ng-model="wed_from" ng-disabled="isWed" ng-click="checkValidation()"> -->
+                                            <select ng-model="wed_from" ng-disabled="isWed">                                      
+                                                <option>01:00</option> <option>02:00</option> <option>03:00</option> <option>04:00</option>
+                                                <option>05:00</option> <option>06:00</option> <option>07:00</option> <option>08:00</option>
+                                                <option>09:00</option> <option>10:00</option> <option>11:00</option> <option>12:00</option> 
+                                                <option>13:00</option> <option>14:00</option> <option>15:00</option> <option>16:00</option>
+                                                <option>17:00</option> <option>18:00</option> <option>19:00</option> <option>20:00</option>
+                                                <option>21:00</option> <option>22:00</option> <option>23:00</option> <option>24:00</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <!-- <input  type="text" pattern="([0-1]{1}[0-9]{1}|20|21|22|23):[0-5]{1}[0-9]{1}" ng-model="wed_to" ng-disabled="isWed" ng-click="checkValidation()"> -->
+                                            <select ng-model="wed_to" ng-disabled="isWed">                                      
+                                                <option>01:00</option> <option>02:00</option> <option>03:00</option> <option>04:00</option>
+                                                <option>05:00</option> <option>06:00</option> <option>07:00</option> <option>08:00</option>
+                                                <option>09:00</option> <option>10:00</option> <option>11:00</option> <option>12:00</option> 
+                                                <option>13:00</option> <option>14:00</option> <option>15:00</option> <option>16:00</option>
+                                                <option>17:00</option> <option>18:00</option> <option>19:00</option> <option>20:00</option>
+                                                <option>21:00</option> <option>22:00</option> <option>23:00</option> <option>24:00</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Thursday</td>
+                                        <td>
+                                            <input type="radio" name="thu" value="false" ng-model="thu" ng-click="checkValidation()">Close</td>
+                                        <td>
+                                            <input type="radio" name="thu" value="true" ng-model="thu" ng-click="checkValidation()" >Open</td>
+                                        <td>
+                                            <!-- <input  type="text" pattern="([0-1]{1}[0-9]{1}|20|21|22|23):[0-5]{1}[0-9]{1}" ng-model="thu_from" ng-disabled="isThu"> -->
+                                            <select ng-model="thu_from" ng-disabled="isThu">                                      
+                                                <option>01:00</option> <option>02:00</option> <option>03:00</option> <option>04:00</option>
+                                                <option>05:00</option> <option>06:00</option> <option>07:00</option> <option>08:00</option>
+                                                <option>09:00</option> <option>10:00</option> <option>11:00</option> <option>12:00</option> 
+                                                <option>13:00</option> <option>14:00</option> <option>15:00</option> <option>16:00</option>
+                                                <option>17:00</option> <option>18:00</option> <option>19:00</option> <option>20:00</option>
+                                                <option>21:00</option> <option>22:00</option> <option>23:00</option> <option>24:00</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <!-- <input  type="text" pattern="([0-1]{1}[0-9]{1}|20|21|22|23):[0-5]{1}[0-9]{1}"ng-model="thu_to" ng-disabled="isThu"> -->
+                                            <select ng-model="thu_to" ng-disabled="isThu">                                      
+                                                <option>01:00</option> <option>02:00</option> <option>03:00</option> <option>04:00</option>
+                                                <option>05:00</option> <option>06:00</option> <option>07:00</option> <option>08:00</option>
+                                                <option>09:00</option> <option>10:00</option> <option>11:00</option> <option>12:00</option> 
+                                                <option>13:00</option> <option>14:00</option> <option>15:00</option> <option>16:00</option>
+                                                <option>17:00</option> <option>18:00</option> <option>19:00</option> <option>20:00</option>
+                                                <option>21:00</option> <option>22:00</option> <option>23:00</option> <option>24:00</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Friday</td>
+                                        <td>
+                                            <input type="radio" name="fri" value="false" ng-model="fri" ng-click="checkValidation()">Close</td>
+                                        <td>
+                                            <input type="radio" name="fri" value="true" ng-model="fri" ng-click="checkValidation()" >Open</td>
+                                        <td>
+                                            <!-- <input  type="text" pattern="([0-1]{1}[0-9]{1}|20|21|22|23):[0-5]{1}[0-9]{1}" ng-model="fri_from" ng-disabled="isFri"> -->
+                                            <select ng-model="fri_from" ng-disabled="isFri">                                      
+                                                <option>01:00</option> <option>02:00</option> <option>03:00</option> <option>04:00</option>
+                                                <option>05:00</option> <option>06:00</option> <option>07:00</option> <option>08:00</option>
+                                                <option>09:00</option> <option>10:00</option> <option>11:00</option> <option>12:00</option> 
+                                                <option>13:00</option> <option>14:00</option> <option>15:00</option> <option>16:00</option>
+                                                <option>17:00</option> <option>18:00</option> <option>19:00</option> <option>20:00</option>
+                                                <option>21:00</option> <option>22:00</option> <option>23:00</option> <option>24:00</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <!-- <input  type="text" pattern="([0-1]{1}[0-9]{1}|20|21|22|23):[0-5]{1}[0-9]{1}" ng-model="fri_to" ng-disabled="isFri"> -->
+                                            <select ng-model="fri_to" ng-disabled="isFri">                                      
+                                                <option>01:00</option> <option>02:00</option> <option>03:00</option> <option>04:00</option>
+                                                <option>05:00</option> <option>06:00</option> <option>07:00</option> <option>08:00</option>
+                                                <option>09:00</option> <option>10:00</option> <option>11:00</option> <option>12:00</option> 
+                                                <option>13:00</option> <option>14:00</option> <option>15:00</option> <option>16:00</option>
+                                                <option>17:00</option> <option>18:00</option> <option>19:00</option> <option>20:00</option>
+                                                <option>21:00</option> <option>22:00</option> <option>23:00</option> <option>24:00</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Saturday</td>
+                                        <td>
+                                            <input type="radio" name="sat" value="false" ng-model="sat" ng-click="checkValidation()">Close</td>
+                                        <td>
+                                            <input type="radio" name="sat" value="true" ng-model="sat" ng-click="checkValidation()" >Open</td>
+                                        <td>
+                                            <!-- <input  type="text" pattern="([0-1]{1}[0-9]{1}|20|21|22|23):[0-5]{1}[0-9]{1}" ng-model="sat_from" ng-disabled="isSat"> -->
+                                            <select ng-model="sat_from" ng-disabled="isSat">                                      
+                                                <option>01:00</option> <option>02:00</option> <option>03:00</option> <option>04:00</option>
+                                                <option>05:00</option> <option>06:00</option> <option>07:00</option> <option>08:00</option>
+                                                <option>09:00</option> <option>10:00</option> <option>11:00</option> <option>12:00</option> 
+                                                <option>13:00</option> <option>14:00</option> <option>15:00</option> <option>16:00</option>
+                                                <option>17:00</option> <option>18:00</option> <option>19:00</option> <option>20:00</option>
+                                                <option>21:00</option> <option>22:00</option> <option>23:00</option> <option>24:00</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <!-- <input  type="text" pattern="([0-1]{1}[0-9]{1}|20|21|22|23):[0-5]{1}[0-9]{1}" ng-model="sat_to" ng-disabled="isSat"> -->
+                                            <select ng-model="sat_to" ng-disabled="isSat">                                      
+                                                <option>01:00</option> <option>02:00</option> <option>03:00</option> <option>04:00</option>
+                                                <option>05:00</option> <option>06:00</option> <option>07:00</option> <option>08:00</option>
+                                                <option>09:00</option> <option>10:00</option> <option>11:00</option> <option>12:00</option> 
+                                                <option>13:00</option> <option>14:00</option> <option>15:00</option> <option>16:00</option>
+                                                <option>17:00</option> <option>18:00</option> <option>19:00</option> <option>20:00</option>
+                                                <option>21:00</option> <option>22:00</option> <option>23:00</option> <option>24:00</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sunday</td>
+                                        <td>
+                                            <input type="radio" name="sun" value="false" ng-model="sun" ng-click="checkValidation()" >Close</td>
+                                        <td>
+                                            <input type="radio" name="sun" value="true" ng-model="sun" ng-click="checkValidation()" >Open</td>
+                                        <td>
+                                            <!-- <input  type="text" pattern="([0-1]{1}[0-9]{1}|20|21|22|23):[0-5]{1}[0-9]{1}" ng-model="sun_from" ng-disabled="isSun"> -->
+                                            <select ng-model="sun_from" ng-disabled="isSun">                                      
+                                                <option>01:00</option> <option>02:00</option> <option>03:00</option> <option>04:00</option>
+                                                <option>05:00</option> <option>06:00</option> <option>07:00</option> <option>08:00</option>
+                                                <option>09:00</option> <option>10:00</option> <option>11:00</option> <option>12:00</option> 
+                                                <option>13:00</option> <option>14:00</option> <option>15:00</option> <option>16:00</option>
+                                                <option>17:00</option> <option>18:00</option> <option>19:00</option> <option>20:00</option>
+                                                <option>21:00</option> <option>22:00</option> <option>23:00</option> <option>24:00</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <!-- <input  type="text" pattern="([0-1]{1}[0-9]{1}|20|21|22|23):[0-5]{1}[0-9]{1}" ng-model="sun_to" ng-disabled="isSun"> -->
+                                            <select ng-model="sun_to" ng-disabled="isSun">                                      
+                                                <option>01:00</option> <option>02:00</option> <option>03:00</option> <option>04:00</option>
+                                                <option>05:00</option> <option>06:00</option> <option>07:00</option> <option>08:00</option>
+                                                <option>09:00</option> <option>10:00</option> <option>11:00</option> <option>12:00</option> 
+                                                <option>13:00</option> <option>14:00</option> <option>15:00</option> <option>16:00</option>
+                                                <option>17:00</option> <option>18:00</option> <option>19:00</option> <option>20:00</option>
+                                                <option>21:00</option> <option>22:00</option> <option>23:00</option> <option>24:00</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+                            <div class="f1-buttons">
+                                <button type="button" class="btn btn-previous">Previous</button>
+                                <button type="button" class="btn btn-next">Next</button>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <h4>Social media profiles:</h4>
+                            <div class="form-group">
+                                <label class="sr-only" for="f1-facebook">Facebook</label>
+                                <input type="text" name="f1-facebook" placeholder="Facebook..." class="f1-facebook form-control" id="facebook" ng-model="facebook">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="f1-twitter">Twitter</label>
+                                <input type="text" name="f1-twitter" placeholder="Twitter..." class="f1-twitter form-control" ng-model="twitter" id="twitter">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="f1-google-plus">You tube</label>
+                                <input type="text" name="f1-google-plus" placeholder="YouTube..." class="f1-google-plus form-control" ng-model="youtube"
+                                    id="youtube">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="f1-google-plus">Instagram</label>
+                                <input type="text" name="f1-google-plus" placeholder="Instagram..." class="f1-google-plus form-control" ng-model="instagram"
+                                    id="instagram">
+                            </div>
+                            <div class="f1-buttons">
+                                <button type="button" class="btn btn-previous">Previous</button>
+                                <button  class="btn btn-submit"  ng-click="signupUser()">Submit</button>
+                            </div>
+                        </fieldset>
+
+
+
+                    </form>
+
+                    <!-- Javascript -->
+
+                    <script src="assets/js/jquery-1.11.1.min.js"></script>
+                    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+                    <script src="assets/js/jquery.backstretch.min.js"></script>
+                    <script src="assets/js/retina-1.1.0.min.js"></script>
+                    <script src="assets/js/scripts.js"></script>
+
+</body>
+
+</html>

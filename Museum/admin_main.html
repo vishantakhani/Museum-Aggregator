@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- </StyleSheet> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"> </script>
+    <script src="D:/Museum Aggregators/bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"> </script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
+    <script src="ng-file-upload.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <!-- </StyleSheet> -->
+    <title>Welcome to Admin Dashbord</title>
+    <style>
+        .chip.chip-md {
+            height: 42px;
+            line-height: 42px;
+            border-radius: 21px;
+        }
+
+        .chip.chip-md img {
+            height: 42px;
+            width: 42px;
+        }
+
+        .chip.chip-lg {
+            height: 52px;
+            line-height: 52px;
+            border-radius: 26px;
+        }
+
+        .chip.chip-lg img {
+            height: 52px;
+            width: 52px;
+        }
+
+
+        .aqua-gradient {
+            background: -webkit-linear-gradient(50deg, #2096ff, #05ffa3) !important;
+            background: -o-linear-gradient(50deg, #2096ff, #05ffa3) !important;
+            background: linear-gradient(40deg, #2096ff, #05ffa3) !important;
+        }
+
+        .chip {
+            color: white;
+            display: inline-block;
+            height: 32px;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 32px;
+            padding: 0 12px;
+            -webkit-border-radius: 16px;
+            border-radius: 16px;
+            background-color: #eceff1;
+            cursor: pointer;
+            -webkit-transition: all .3s linear;
+            -o-transition: all .3s linear;
+            transition: all .3s linear;
+        }
+
+        .waves-effect {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            z-index: 1;
+        }
+
+        .navbar.navbar-dark .navbar-nav .nav-item .nav-link {
+            color: #fff;
+            -webkit-transition: .35s;
+            -o-transition: .35s;
+            transition: .35s;
+        }
+
+        .navbar .nav-item .nav-link {
+            display: block;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: rgb(255, 255, 255);
+        }
+
+        .navbar-expand-lg .navbar-nav .nav-link {
+            padding-right: .5rem;
+            padding-left: .5rem;
+        }
+
+        #navbarDropdownMenuLink:hover {
+            color: indigo;
+            cursor: pointer;
+
+        }
+
+        #navbarDropdownMenuLink {
+            font-size: 20px;
+        }
+
+        .dropdown-item.waves-effect.waves-light:hover {
+            background-color: blueviolet;
+            /* -webkit-animation: 0.5s; */
+            /* animation: 0.5s */
+            animation-fill-mode: both;
+            animation-delay: 1s;
+        }
+
+        .dropdown-toggle::after {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: .255em;
+            vertical-align: .255em;
+            content: "";
+            border-top: .3em solid;
+            border-right: .3em solid transparent;
+            border-bottom: 0;
+            border-left: .3em solid transparent;
+        }
+
+        .carousel-control-next-icon {
+            background-image: url(assets/img/Right-arrow.png);
+        }
+
+        .carousel-control-prev-icon {
+            background-image: url(assets/img/Left-arrow.png);
+        }
+    </style>
+</head>
+
+<body style="background-color: cadetblue;" data-ng-init="getUserData()" ng-app="myModule" ng-controller="dashboard">
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark primary-color" style="background-color: lightslategray">
+
+        <div class="container" style="justify-content: center ;">
+            <!-- Collapse button -->
+            <!-- <div class="row"> -->
+            <!-- Collapsible content -->
+            <div class="col-11 justify-content-center font-weight-bold" style="display: flex" id="basicExampleNav">
+                <!-- Navbar brand -->
+                <a class="navbar-brand px-lg-4 mr-0" href="index.html">
+                    <img ng-src="{{ourLogo}}" height="80" alt="">
+                </a>
+            </div>
+
+            <div class="col-1">
+                <ul class="navbar-nav ml-auto nav-flex-icons">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="true">
+                            <i class="fa fa-user"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item waves-effect waves-light" href="updateinfo.html">Update museum detail</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item waves-effect waves-light" href="changepassword.html">Change Password</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item waves-effect waves-light" href="" ng-click="logout()">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- </div> -->
+        </div>
+    </nav>
+    <!--/.Navbar-->
+
+
+    <div class="container-fluid">
+
+        <div class="justify-content-center font-weight-bold" style="background-color: white ; margin-top: 1% ; border-radius: 10px;">
+
+            <div class="row" style="min-height: 80px">
+                <div class="col-2 text-center" style="display: flex; justify-content: center; flex-direction: column;  ">
+                    <a class="navbar-brand mr-0" href="#" style="padding-right: 0px">
+                        <img ng-src="{{museumLogo}}" height="100" alt="sdgr">
+                    </a>
+                </div>
+                <div class="col-6" style="display: flex; justify-content: center; flex-direction: column; ">
+                    <div>
+                        <sapn>{{mname}}</span>
+                    </div>
+                </div>
+                <div class="col-4" style="display: flex; justify-content: center; flex-direction: column; ">
+                    <div>
+                        <i class "fa fa-loaction"></i>
+                        <h6 style="font-weight: 400 ; margin-bottom: 0;">{{address}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid" style="margin-top: 1%; margin-bottom: 2% ">
+            <div class="row">
+                <!-- Main Left -->
+                <div class="col-12">
+
+                    <div class="row">
+                        <div class="col-12" style=" background-color: white ;  border-radius: 10px; justify-content: center; display: flex">
+                            <div class="col-2 chip chip-lg aqua-gradient white-text waves-effect waves-effect text-center" style="margin-right: 3%">
+                                <a href="#" data-target="#addModal" data-toggle="modal" style=" text-decoration: none !important; color: white">Add Image</a>
+                            </div>
+                            <div class="col-2 chip chip-lg aqua-gradient white-text waves-effect waves-effect text-center" ng-click="deleteImage()">
+                                Delete Image
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12" style="display: flex; background-color: white ; margin-top: 1% ; border-radius: 10px; max-height: 100%">
+            <div class="col-6" style="justify-content: center; display: flex ; padding: 20px">
+                <div id="carouselExampleControls" class="carousel slide col-8" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" ng-src="{{currentImage}}" alt="First slide" height="350px" width="300px">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" ng-click="changeImagePrev()">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" ng-click="changeImageNext()">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-6" style="justify-content: center; display: flex ; padding: 20px;">
+                <p class="col-12" style="padding: 10px ; border-radius: 5px ;  margin-bottom: 0; color:white ; background: linear-gradient(187deg, rgba(32,165,255,0.7529962089624298) 61%, rgba(5,255,163,0.7586141864905197) 73%);
+                ">{{currentDesc}}</p>
+            </div>
+        </div>
+        <div class="container-fluid" style="margin-top: 1%; margin-bottom: 2% ">
+            <div class="row">
+                <!-- Main Left -->
+                <div class="col-12">
+
+                    <div class="row">
+                        <div class="col-12" style=" background-color: white ;  border-radius: 10px; justify-content: center; display: flex">
+                            <div class="col-2 chip chip-lg aqua-gradient white-text waves-effect waves-effect text-center" style="margin-right: 3%">
+                                History
+                            </div>
+                            <div class="col-2 chip chip-lg aqua-gradient white-text waves-effect waves-effect text-center" ng-click="saveHistory()">
+                                Save History
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12" style="display: flex; background-color: white ; margin-top: 1% ; border-radius: 10px; max-height: 100%">
+
+            <div class="col-12" style="justify-content: center; display: flex ; padding: 20px;">
+                <input type="text" class="col-12" style="padding: 10px ; border-radius: 5px ;  margin-bottom: 0; color:white ; background: linear-gradient(187deg, rgba(32,165,255,0.7529962089624298) 61%, rgba(5,255,163,0.7586141864905197) 73%);" ng-model="history">
+            </div>
+        </div>
+        <div class="container-fluid" style="margin-top: 1%; margin-bottom: 2% ">
+                <div class="row">
+                    <!-- Main Left -->
+                    <div class="col-12">
+    
+                        <div class="row">
+                            <div class="col-12" style=" background-color: white ;  border-radius: 10px; justify-content: center; display: flex">
+                                <div class="col-2 chip chip-lg aqua-gradient white-text waves-effect waves-effect text-center" style="margin-right: 3%">
+                                    About Museum
+                                </div>
+                                <div class="col-2 chip chip-lg aqua-gradient white-text waves-effect waves-effect text-center" ng-click="saveDescription()">
+                                    Save About Museum
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+            <div class="col-12" style="display: flex; background-color: white ; margin-top: 1% ; margin-bottom: 2%; border-radius: 10px; max-height: 100%">
+    
+                <div class="col-12" style="justify-content: center; display: flex ; padding: 20px;">
+                    <input type="text" ng-model="description" class="col-12" style="padding: 10px ; border-radius: 5px ;  margin-bottom: 0; color:white ; background: linear-gradient(187deg, rgba(32,165,255,0.7529962089624298) 61%, rgba(5,255,163,0.7586141864905197) 73%); ">
+                </div>
+            </div>
+    </div>
+
+
+
+    <!--Add Image modal-->
+    <div id="addModal" class="modal fade " tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="display : inline">
+
+                    <h3 class="text-center">Add Iamge</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="text-center">
+
+                                    <!-- <p>If you have forgotten your password you can reset it here.</p> -->
+                                    <div class="panel-body">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <p>
+                                                    <strong>Upload Image(jpg/png/jpeg only)</strong>
+                                                </p>
+                                                <input class="form-control input-lg" placeholder="Upload Image(jpg/png/jpeg only)" file-model="myFile" type="file" accept=".png, .jpg, .jpeg"
+                                                    required>
+                                            </div>
+                                            <div class="form-group">
+                                                <p>
+                                                    <strong>Add Image Description</strong>
+                                                </p>
+                                                <textarea class="form-control input-lg" ng-model="imageDesc">
+                                                    
+                                                </textarea>
+                                            </div>
+                                            <input class="btn btn-lg btn-primary btn-block" ng-click="addImage()" value="Add Image" type="button">
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-12">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Add Imagemodal-->
+
+
+</body>
+
+</html>

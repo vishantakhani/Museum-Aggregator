@@ -1,0 +1,96 @@
+<html>
+
+<head>
+
+	<title>
+		Login
+	</title>
+	<link rel="shortcut icon" href="D:/Museum Aggregators/Museum/images.png">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"> </script>
+	<!-- <script type="text/javascript" src="script.js"></script> -->
+	<script type="text/javascript" src="script.js"></script>
+	<script src="D:/Museum Aggregators/bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"> </script>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false">
+	</script>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/login.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+	</style
+
+</head>
+
+<body ng-app="myModule" ng-controller="loginController">
+
+
+
+		<div class="container">
+				<div class="login-container">
+					<div id="output"></div>
+					<div class="avatar"></div>
+					<div>
+						<div class="form-box">
+							<form method="post">
+		
+								<input type="text" name="username" placeholder="Email" ng-model="username" required>
+								<input type="password" name="pass" placeholder="Password" ng-model="password" required>
+								<button class="btn btn-info btn-block login" ng-click="loginUser()">
+									Login
+								</button>
+								<br>
+								<a href="#" data-target="#pwdModal" data-toggle="modal">Forgot Password?</a>
+							</form>
+						</div>
+		
+						<div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--Forget password modal-->
+			<div id="pwdModal" class="modal fade " tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header" style="display : inline">
+							
+							<h3 class="text-center">What's My Password?</h3>
+						</div>
+						<div class="modal-body">
+							<div class="col-md-12">
+								<div class="panel panel-default">
+									<div class="panel-body">
+										<div class="text-center">
+		
+											<p>If you have forgotten your password you can reset it here.</p>
+											<div class="panel-body">
+												<fieldset>
+													<div class="form-group">
+														<input class="form-control input-lg" placeholder="E-mail Address" name="email" type="email" ng-model="femail">
+													</div>
+													<input class="btn btn-lg btn-primary btn-block" value="Send My Password" type="submit" ng-click="forgotPassword()">
+												</fieldset>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<div class="col-md-12">
+								<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--Forget password modal-->
+		
+		
+	
+</body>
+
+</html>

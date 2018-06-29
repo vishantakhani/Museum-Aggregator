@@ -1,0 +1,5 @@
+INFO |00001.940|JanusDebugSession: readConfig: {"name":"Launch Script on Server","request":"launch","type":"janus","script":"D:\\Museum Aggregators\\index.js","username":"admin","password":"","principal":"relations","host":"localhost","applicationPort":11000,"debuggerPort":8089,"currentConfiguration":true,"stopOnEntry":true,"log":{"fileName":"D:\\Museum Aggregators/vscode-janus-debug-launch.log","logLevel":{"default":"Debug"}},"timeout":6000,"__sessionId":"87c9b498-5b05-446c-9bdb-ac74eed807aa"}
+INFO |00001.942|JanusDebugSession: launchRequest
+ERROR|00001.949|JanusDebugSession: launchRequest failed: loading source from script failed: Error: ENOENT: no such file or directory, open 'D:\Museum Aggregators\index.js'
+DEBUG|00001.951|DebugAdapterIPC: connected to VS Code extension
+INFO |00001.954|JanusDebugSession: disconnectRequest; debug adapter running in launch config

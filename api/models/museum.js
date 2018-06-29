@@ -1,0 +1,69 @@
+const mongoose = require('mongoose');
+const museumSchema = mongoose.Schema({
+    
+    mname:{type:String},
+    name:{type:String},
+    email:{
+        type:String,
+        unique:true,
+        match:/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+    },
+   password:{type:String},
+   cno:{type:Number},
+   address:{type:String},
+   pincode:{type:Number},
+   city:{type:String},
+   lat:{type:Number},
+   lng:{type:Number},
+   logo:{type:String},
+   website:{type:String},
+   facebook:{type:String},
+   twitter:{type:String},
+   insta:{type:String},
+   youtube:{type:String},
+   description:{type:String},
+   history:{type:String},
+   timming:{
+       mon:{
+       isOpen:{type:String},
+       from:{type:String},
+       to:{type:String}
+   },
+   tue:{
+    isOpen:{type:String},
+    from:{type:String},
+    to:{type:String}
+},
+wed:{
+    isOpen:{type:String},
+    from:{type:String},
+    to:{type:String}
+},
+thu:{
+    isOpen:{type:String},
+    from:{type:String},
+    to:{type:String}
+},
+fri:{
+    isOpen:{type:String},
+    from:{type:String},
+    to:{type:String}
+},   
+sat:{
+    isOpen:{type:String},
+    from:{type:String},
+    to:{type:String}
+},
+sun:{
+    isOpen:{type:String},
+    from:{type:String},
+    to:{type:String}
+}
+},
+   images:[{
+       path:{type:String},
+       desc:{type:String}
+   }] 
+});
+
+module.exports = mongoose.model('museums',museumSchema);

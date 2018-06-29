@@ -1,0 +1,123 @@
+#main_div
+{
+    background-image: url("D:/Museum Aggregators/ma.jpg");
+    background-size: contain;
+    height: 300px;
+    margin: 0px 20px;
+
+
+    opacity: 60%;
+
+}
+#map_canvas{
+    position: absolute !important;
+    width: 80%;
+    height: 80%;
+  
+    margin-top: 3%;
+}
+
+.content_main
+{
+    padding: 30px 0px;
+    height: inherit;
+}
+
+.logo_home
+{
+    width: 120px;
+    height: 120px;
+    margin : 0 auto;
+}
+
+.main_logo_img
+{
+    width: 200px;
+    height: 100px;
+}
+
+.main_title
+{
+    color: white;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.wraper
+{
+    display: flex;
+    justify-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.search_bar
+{
+    position: relative;
+    width: 100%!important;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    padding-left: 0;
+}
+
+.header__container 
+{
+
+    border: none;
+    background: 0 0;
+    padding: 15px 30px;
+}
+
+#login-navigation
+{
+    float: right;
+}
+
+.header-link a
+ {
+    padding : 10px 15px;
+    background-color: transparent !important;
+    color: #fff;
+}
+
+.header-link a:hover
+{
+    text-decoration: none;
+    color: gray;
+}
+
+.header-link a:last-child
+{
+border: 2px solid #fff !important;
+border-radius: 5px; 
+}
+
+.ui.button {
+
+    cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+    outline: 0;
+    border: none;
+    vertical-align: baseline;
+    background: #E0E1E2;
+        background-color: rgb(224, 225, 226);
+      
+    -webkit-transition: background .1s ease 0s;
+    transition: background .1s ease 0s;
+
+}
+
+.start .signup-link {
+
+    background: 0 0 !important;
+    border: 2px solid #fff !important;
+    border-radius: 3px !important;
+
+}

@@ -1,0 +1,105 @@
+<html>
+<head>
+	<title></title>
+	<script src="angular.js"> </script>
+	<script type="text/javascript" src="script.js"></script>
+</head>
+<body ng-app="myModule">
+  <div ng-controller="myController">
+	<div>
+			Message : {{message}}
+	</div>
+
+
+ 	<div>
+  		First Name : <input type="text" ng-model="employee.firstname">
+  	</div>
+   <div>
+ 		Last Name : <input type="text" ng-model="employee.lastname">
+  	</div>
+   <div>
+ 		Gender Name : <input type="text" ng-model="employee.gender">
+  </div>
+
+
+
+  <div>
+  		First Name : {{employee.firstname}}
+  </div>
+  <div>
+  		Last Name : {{employee.lastname}}
+  </div>
+  <div>
+  		Gender : {{employee.gender}}
+  </div>
+  <div>
+  		Image : <img ng-src="{{img.sorce}}">
+  </div>
+	<input type='text' ng-model="message2">
+		<br>
+			{{message}}
+		<br>
+			{{message2}}
+
+			<br><br><br>
+
+			NG-REPEAT
+
+			
+			
+
+
+
+			<ul>
+					<li ng-repeat="country in countries" ng-init="parentIndex=$index">
+						{{country.name}} - Index : {{$index}}
+						<ul>
+							<li ng-repeat="city in country.city">
+								{{city.name}} - Parent Index : {{ $parent.$index}} Or Parent Index : {{parentIndex}} , Index : {{$index}}
+							</li>
+						</ul>	
+						</li>
+			</ul>
+
+
+
+			<table>
+					<thead>
+							<tr>
+								<th> Name
+								</th>
+								<th> Likes
+								</th>
+								<th> Dislikes
+								</th>
+								<th> Like/Dislike
+								</th>
+							</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="technology in technologies">
+							<td >
+									{{technology.name}}
+							</td>
+							<td >
+									{{technology.likes}}
+							</td>
+							<td >
+									{{technology.dislikes}}
+							</td>
+							<td>
+									<input type="button" value="Like" ng-click="incrementLike(technology)" >
+									<input type="button" value="Dislike" ng-click="incrementDislike(technology)" > 
+							</td>
+						</tr>
+
+					</tbody>
+
+
+			</table>
+  </div>
+  <div ng-build>
+  	{{10+20}} 
+  </div>
+</body>
+</html>

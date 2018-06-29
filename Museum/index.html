@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <title>Musume Aggrigator</title>
+    <link rel="shortcut icon" href="D:/Museum Aggregators/Museum/images.png">
+    
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"> </script>
+    <script src="D:/Museum Aggregators/bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script> 
+    <script type="text/javascript" src="script.js"></script>
+         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"> </script>
+        	<!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
+            <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/index.css">
+
+</head>
+
+<body  ng-app="myModule" ng-controller="indexController"  data-ng-init="setLocation()" >
+
+
+    <div id="main_div">
+        <div class="overlay" style="height: inherit ; background: rgba(0, 0, 0, 0.3);">
+            <div class="header__container">
+                <div id="login-navigation" class="right">
+                    <div class="header-link">
+                        <a href="#" class="signin-link header-login-button ui button mr0" id="signin-link" ng-click="goLogin()"> Log in</a>
+                        <a href="#" class="signup-link header-login-button ui button mr0" id="signup-link" ng-click="goBeAPartner()">Become a museum partner</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="content_main">
+                <div class="logo_home">
+                    <a href="#">
+                        <img class="main_logo_img" src="D:/Museum Aggregators/logo.jpg">
+                    </a>
+                </div>
+                <h3 class="main_title"> Find Museums in {{cityname}} </h3>
+                <div class="wraper">
+                    <div class="col-md-6">
+                        <div class="col-md-10" style="padding-right: 0px;">
+                            <input class="form-control border-secondary border-right-0 rounded-0" type="search" placeholder="Serch by museum name or city......"
+                                id="example-search-input4" ng-model="cityname" autocomplete="on">
+
+                        </div>
+                        <div class="col-md-2" style="padding-left: 0%">
+                            <button class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right" type="button" ng-click="getLatLng()">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+	<div class="container">
+        <center>
+                <div  id="map_canvas" >
+
+                </div>
+            </center>
+            </div>
+
+</body>
+
+</html>
